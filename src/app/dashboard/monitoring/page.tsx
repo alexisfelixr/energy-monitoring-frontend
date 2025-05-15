@@ -172,7 +172,7 @@ export default function MonitoringPage() {
 
         {/* Center Selection Filter */}
         <div className="flex items-center">
-          <label htmlFor="centerSelect" className="mr-2 text-gray-700 font-medium">Center:</label>
+          <label htmlFor="centerSelect" className="mr-2 text-black font-medium" >Center:</label>
           <select
             id="centerSelect"
             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
