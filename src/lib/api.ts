@@ -1,7 +1,7 @@
 // API service for energy monitoring app
 
 // Base URL for the API
-const API_BASE_URL = 'http://localhost:3001'; // Adjust if your backend is running on a different port
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'; // Adjust if your backend is running on a different port
 
 // Helper function for API requests
 async function fetchAPI(endpoint: string, options = {}) {
