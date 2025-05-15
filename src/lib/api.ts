@@ -1,12 +1,21 @@
-// API service for energy monitoring app
-
 // Base URL for the API
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'; // Adjust if your backend is running on a different port
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+// Make sure the URL has a protocol, if not add https://
+const ensureAbsoluteUrl = (url: string) => {
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  return `https://${url}`;
+};
+
+// Ensure we always use an absolute URL with the proper protocol
+const ABSOLUTE_API_BASE_URL = ensureAbsoluteUrl(API_BASE_URL);
 
 // Helper function for API requests
 async function fetchAPI(endpoint: string, options = {}) {
   try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const response = await fetch(`${ABSOLUTE_API_BASE_URL}${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
       },

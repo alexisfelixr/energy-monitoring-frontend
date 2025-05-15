@@ -1,6 +1,17 @@
 import { LoginRequest, RegisterRequest, AuthTokens, User, RefreshTokenRequest } from './types';
 
+// Ensure the API URL always includes the protocol
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+// Make sure the URL has a protocol, if not add https://
+const ensureAbsoluteUrl = (url: string) => {
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  return `https://${url}`;
+};
+
+const ABSOLUTE_API_URL = ensureAbsoluteUrl(API_URL);
 
 export class AuthAPI {
   // Almacenamiento de tokens y usuario
@@ -46,12 +57,14 @@ export class AuthAPI {
       };
     }
     
-    return fetch(url, options);
+    // Make sure we're using absolute URLs
+    const absoluteUrl = url.startsWith('http') ? url : `${ABSOLUTE_API_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+    return fetch(absoluteUrl, options);
   }
 
   // Métodos de autenticación
   static async login(loginData: LoginRequest): Promise<AuthTokens> {
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch(`${ABSOLUTE_API_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -75,7 +88,7 @@ export class AuthAPI {
   }
 
   static async register(registerData: RegisterRequest): Promise<AuthTokens> {
-    const response = await fetch(`${API_URL}/auth/register`, {
+    const response = await fetch(`${ABSOLUTE_API_URL}/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -101,7 +114,7 @@ export class AuthAPI {
     if (!tokens) return;
 
     try {
-      await this.fetchWithAuth(`${API_URL}/auth/logout`, {
+      await this.fetchWithAuth(`${ABSOLUTE_API_URL}/auth/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -124,7 +137,7 @@ export class AuthAPI {
         refreshToken: tokens.refreshToken
       };
 
-      const response = await fetch(`${API_URL}/auth/refresh-token`, {
+      const response = await fetch(`${ABSOLUTE_API_URL}/auth/refresh-token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -157,7 +170,7 @@ export class AuthAPI {
     
     // Si no tenemos los datos, obtenerlos del API
     try {
-      const response = await this.fetchWithAuth(`${API_URL}/auth/profile`);
+      const response = await this.fetchWithAuth(`${ABSOLUTE_API_URL}/auth/profile`);
       
       if (!response.ok) {
         if (response.status === 401) {
@@ -170,7 +183,7 @@ export class AuthAPI {
             }
             
             // Sino, reintentar con el nuevo token
-            const retryResponse = await this.fetchWithAuth(`${API_URL}/auth/profile`);
+            const retryResponse = await this.fetchWithAuth(`${ABSOLUTE_API_URL}/auth/profile`);
             if (retryResponse.ok) {
               return await retryResponse.json();
             }
