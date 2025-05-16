@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthAPI } from './auth-service';
-import { User, AuthState, LoginRequest, RegisterRequest, AuthContextProps } from './types';
+import { AuthState, LoginRequest, RegisterRequest, AuthContextProps } from './types';
 
 // Crear contexto con valores por defecto
 const AuthContext = createContext<AuthContextProps>({

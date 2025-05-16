@@ -60,7 +60,7 @@ const BarChart: React.FC<BarChartProps> = ({
     // Remove standard X axis labels and just add the axis line
     g.append('g')
       .attr('transform', `translate(0,${innerHeight})`)
-      .call(d3.axisBottom(xScale).tickSize(0).tickFormat("" as any))
+      .call(d3.axisBottom(xScale).tickSize(0).tickFormat(() => ""))
       .select('.domain')
       .attr('stroke', '#ccc');
 
@@ -75,7 +75,7 @@ const BarChart: React.FC<BarChartProps> = ({
       .call(
         d3.axisLeft(yScale)
           .tickSize(-innerWidth)
-          .tickFormat('' as any)
+          .tickFormat(() => "")
       )
       .style('stroke-dasharray', '3,3')
       .style('stroke-opacity', 0.2)
