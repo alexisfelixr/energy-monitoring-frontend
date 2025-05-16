@@ -31,6 +31,8 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 4. Ejecución:
 Primero, iniciar el servidor de desarrollo (backend local):
 
+Luego, iniciar el servidor de desarrollo (frontend local):
+
 ```bash
 npm run dev
 # or
@@ -40,7 +42,32 @@ pnpm dev
 # or
 bun dev
 ```
+Desplie a producción:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+# or
+bun build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Iniciar en producción:
+
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+# or
+bun start
+```
+
+El frontend estará disponible en [http://localhost:3000](http://localhost:3000).
+
+Aplicación desplegada en Railway: https://energy-monitoring-frontend-production.up.railway.app
+
+
