@@ -128,7 +128,7 @@ export default function MonitoringPage() {
       
       return () => clearInterval(interval);
     }
-  }, [selectedCenterId, fetchCenterMonitoringData]);
+  }, [selectedCenterId]);
   
   // Helper function to format the last update time
   const formatLastUpdate = (date: Date) => {
