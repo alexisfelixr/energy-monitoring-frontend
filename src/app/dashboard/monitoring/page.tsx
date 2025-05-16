@@ -203,51 +203,56 @@ export default function MonitoringPage() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {/* Tarjetas de estadísticas */}
-        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="rounded-full bg-blue-50 p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Current Consumption</p>
-                <p className="text-2xl font-bold text-gray-800">{currentConsumption}<span className="text-base font-medium"> kWh</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="rounded-full bg-green-50 p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Efficiency</p>
-                <p className="text-2xl font-bold text-gray-800">{efficiency}<span className="text-base font-medium"> %</span></p>
+      {/* Tarjetas de estadísticas en grid para dispositivos móviles */}
+      <div className="mb-8">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-3">
+          {/* Current Consumption */}
+          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+            <div className="p-2 sm:p-4">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start">
+                <div className="rounded-full bg-blue-50 p-2 mb-1 sm:mb-0 sm:mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5">Consumption</p>
+                  <p className="text-sm sm:text-xl font-bold text-gray-800">{currentConsumption}<span className="text-xs sm:text-sm font-medium">kW</span></p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="rounded-full bg-purple-50 p-3 mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+          {/* Efficiency */}
+          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+            <div className="p-2 sm:p-4">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start">
+                <div className="rounded-full bg-green-50 p-2 mb-1 sm:mb-0 sm:mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5">Efficiency</p>
+                  <p className="text-sm sm:text-xl font-bold text-gray-800">{efficiency}<span className="text-xs sm:text-sm font-medium">%</span></p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Usage Status</p>
-                <p className="text-2xl font-bold text-green-600">Normal</p>
+            </div>
+          </div>
+
+          {/* Usage Status */}
+          <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+            <div className="p-2 sm:p-4">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start">
+                <div className="rounded-full bg-purple-50 p-2 mb-1 sm:mb-0 sm:mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5">Status</p>
+                  <p className="text-sm sm:text-xl font-bold text-green-600">Normal</p>
+                </div>
               </div>
             </div>
           </div>
@@ -263,7 +268,7 @@ export default function MonitoringPage() {
         ) : error ? (
           <div className="h-80 flex items-center justify-center text-red-500">{error}</div>
         ) : (
-          <div className="h-80">
+          <div className="h-80 w-full">
             <LineChart data={realtimeData} width={800} height={320} />
           </div>
         )}
@@ -281,7 +286,7 @@ export default function MonitoringPage() {
           ) : energyByDeviceData.length === 0 ? (
             <div className="h-64 flex items-center justify-center text-gray-500">No device data available</div>
           ) : (
-            <div className="h-75">
+            <div className="h-75 w-full">
               <BarChart data={energyByDeviceData} width={500} height={300} color="#10B981" />
             </div>
           )}
@@ -298,14 +303,14 @@ export default function MonitoringPage() {
           ) : consumptionByTypeData.every(item => item.value === 0) ? (
             <div className="h-64 flex items-center justify-center text-gray-500">No consumption data available</div>
           ) : (
-            <div className="h-64 flex justify-center">
+            <div className="h-64 w-full flex justify-center">
               <PieChart data={consumptionByTypeData} width={250} height={250} />
             </div>
           )}
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+      <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md border border-gray-100">
         <h2 className="text-lg font-bold mb-4 text-black">Devices Status</h2>
         {loading ? (
           <div className="h-40 flex items-center justify-center">
@@ -316,25 +321,48 @@ export default function MonitoringPage() {
         ) : deviceData.length === 0 ? (
           <div className="h-40 flex items-center justify-center text-gray-500">No devices available</div>
         ) : (
-          <div className="border border-gray-200 rounded-lg">
-            <div className="grid grid-cols-4 bg-gray-100 p-4 border-b border-gray-200 font-semibold text-gray-900">
-              <div>Device Name</div>
-              <div>Status</div>
-              <div>Consumption</div>
-              <div>Last Update</div>
-            </div>
-            {deviceData.map((device, index) => (
-              <div key={index} className={`grid grid-cols-4 p-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} border-b border-gray-200 font-medium`}>
-                <div className="font-semibold text-gray-900">{device.name}</div>
-                <div>
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${device.status === 'Online' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                    {device.status}
-                  </span>
-                </div>
-                <div className="text-gray-900">{device.consumption} kWh</div>
-                <div className="text-gray-900">{device.lastUpdate}</div>
+          <div className="border border-gray-200 rounded-lg overflow-hidden">
+            {/* Tabla para pantallas medianas y grandes */}
+            <div className="hidden sm:block">
+              <div className="grid grid-cols-4 bg-gray-100 p-3 border-b border-gray-200 font-semibold text-gray-900 text-sm">
+                <div>Device Name</div>
+                <div>Status</div>
+                <div>Consumption</div>
+                <div>Last Update</div>
               </div>
-            ))}
+              {deviceData.map((device, index) => (
+                <div key={index} className={`grid grid-cols-4 p-3 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} border-b border-gray-200 font-medium text-sm`}>
+                  <div className="font-semibold text-gray-900">{device.name}</div>
+                  <div>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${device.status === 'Online' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                      {device.status}
+                    </span>
+                  </div>
+                  <div className="text-gray-900">{device.consumption} kWh</div>
+                  <div className="text-gray-900">{device.lastUpdate}</div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Vista de tarjetas para pantallas pequeñas */}
+            <div className="sm:hidden">
+              {deviceData.map((device, index) => (
+                <div key={index} className={`p-3 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} border-b border-gray-200`}>
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="font-semibold text-gray-900 text-sm">{device.name}</div>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${device.status === 'Online' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                      {device.status}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 text-xs">
+                    <div className="text-gray-500">Consumption:</div>
+                    <div className="text-gray-900 font-medium">{device.consumption} kWh</div>
+                    <div className="text-gray-500">Last Update:</div>
+                    <div className="text-gray-900 font-medium">{device.lastUpdate}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

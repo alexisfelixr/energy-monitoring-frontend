@@ -151,7 +151,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, width = 800, height = 300 }
 
     g.append('text')
       .attr('x', innerWidth / 2)
-      .attr('y', innerHeight + margin.bottom - 15)
+      .attr('y', innerHeight + margin.bottom)
       .attr('text-anchor', 'middle')
       .style('font-size', '12px')
       .text('Time');
@@ -276,7 +276,16 @@ const LineChart: React.FC<LineChartProps> = ({ data, width = 800, height = 300 }
   }, [data, width, height]);
 
   return (
-    <svg ref={svgRef} width={width} height={height} className='mx-auto'></svg>
+    <div className="w-full h-full overflow-hidden">
+      <svg 
+        ref={svgRef} 
+        width="100%" 
+        height="100%" 
+        viewBox={`0 0 ${width} ${height}`}
+        preserveAspectRatio="xMidYMid meet"
+        className="mx-auto max-w-full"
+      ></svg>
+    </div>
   );
 };
 

@@ -183,7 +183,18 @@ const BarChart: React.FC<BarChartProps> = ({
     };
   }, [data, width, height, color]);
 
-  return <svg ref={svgRef} width={width} height={height} className="mx-auto"></svg>;
+  return (
+    <div className="w-full h-full overflow-hidden">
+      <svg 
+        ref={svgRef} 
+        width="100%" 
+        height="100%" 
+        viewBox={`0 0 ${width} ${height}`}
+        preserveAspectRatio="xMidYMid meet"
+        className="mx-auto max-w-full"
+      ></svg>
+    </div>
+  );
 };
 
 export default BarChart;
