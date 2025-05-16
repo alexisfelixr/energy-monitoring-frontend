@@ -66,8 +66,12 @@ export default function RegisterPage() {
     }
 
     // Omitir confirmPassword al enviar
-    let { confirmPassword, ...registerData } = formData;
-    confirmPassword = '';
+    const { confirmPassword, ...registerData } = formData;
+
+    if(!confirmPassword){
+      return;
+    }
+
     await register(registerData);
   };
 

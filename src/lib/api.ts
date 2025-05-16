@@ -12,27 +12,14 @@ const ensureAbsoluteUrl = (url: string) => {
 // Ensure we always use an absolute URL with the proper protocol
 const ABSOLUTE_API_BASE_URL = ensureAbsoluteUrl(API_BASE_URL);
 
-// Función para obtener el token JWT del almacenamiento local
-const getAuthToken = () => {
-  if (typeof window === 'undefined') return null;
-  
-  const tokensStr = localStorage.getItem('auth_tokens');
-  if (!tokensStr) return null;
-  
-  try {
-    const tokens = JSON.parse(tokensStr);
-    return tokens.accessToken;
-  } catch (e) {
-    console.error('Error al obtener token de autorización:', e);
-    return null;
-  }
-};
+// Importar nuestro interceptor de autenticación
+import { getAuthTokenWithRefresh } from './auth-interceptor';
 
 // Helper function for API requests
 async function fetchAPI(endpoint: string, options: RequestInit = {}) {
   try {
-    // Obtener el token de autorización
-    const token = getAuthToken();
+    // Obtener el token de autorización con capacidad de renovación automática
+    const token = await getAuthTokenWithRefresh();
     
     // Preparar los headers
     const headers: HeadersInit = {
@@ -51,6 +38,17 @@ async function fetchAPI(endpoint: string, options: RequestInit = {}) {
     });
   
     if (!response.ok) {
+      // Si el error es 401 (No autorizado) incluso después de intentar refrescar el token,
+      // podríamos redirigir al usuario a la página de login
+      if (response.status === 401 && typeof window !== 'undefined') {
+        console.error('Error de autenticación incluso después de refrescar el token');
+        // Limpiar tokens almacenados
+        localStorage.removeItem('auth_tokens');
+        // Redireccionar a login
+        window.location.href = '/login';
+        return null;
+      }
+      
       console.error(`API error: ${response.statusText}`);
       return null;
     }
