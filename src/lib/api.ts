@@ -86,18 +86,7 @@ export const MedicionesAPI = {
   },
   // New endpoint to get all monitoring data for a center from the last 3 hours
   getCentroMonitoringData: (centroId: number) => {
-    // Calculate timestamp for 3 hours ago
-    const now = new Date();
-    
-    // Especificar la zona horaria de CDMX (UTC-6 o -360 minutos)
-    const cdmxTimezoneOffset = -360; // -360 minutos (-6 horas) para CDMX
-    
-    // Calcular 3 horas atrás desde la hora actual
-    const threeHoursAgo = new Date(now.getTime() - (3 * 60 * 60 * 1000));
-    const timestamp = threeHoursAgo.toISOString();
-    
-    // Enviar la marca de tiempo y explícitamente el offset de CDMX
-    return fetchAPI(`/mediciones/centro/${centroId}/monitoring?desde=${timestamp}&timezoneOffset=${cdmxTimezoneOffset}&timezone=America/Mexico_City`);
+    return fetchAPI(`/mediciones/centro/${centroId}/monitoring`);
   },
   // New endpoint to get historical data with filters
   getHistoricalData: (filters: {
