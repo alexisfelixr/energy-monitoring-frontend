@@ -14,16 +14,9 @@ const EnergyIcon = () => (
 const Header = () => {
   // Get user from auth context
   const { user, logout } = useAuth();
-  // const [localUser, setLocalUser] = useState(user);
-  
-  // When component mounts, check both context and localStorage for user data
-  // useEffect(() => {
-  //   setLocalUser(user);
-  // }, [user]);
-  
+
   const handleLogout = async () => {
     await logout();
-    // setLocalUser(null);
   };
   
   const getInitials = (nombre: string, apellido: string) => {

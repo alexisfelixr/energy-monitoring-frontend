@@ -12,14 +12,42 @@ const ensureAbsoluteUrl = (url: string) => {
 // Ensure we always use an absolute URL with the proper protocol
 const ABSOLUTE_API_BASE_URL = ensureAbsoluteUrl(API_BASE_URL);
 
+// Función para obtener el token JWT del almacenamiento local
+const getAuthToken = () => {
+  if (typeof window === 'undefined') return null;
+  
+  const tokensStr = localStorage.getItem('auth_tokens');
+  if (!tokensStr) return null;
+  
+  try {
+    const tokens = JSON.parse(tokensStr);
+    return tokens.accessToken;
+  } catch (e) {
+    console.error('Error al obtener token de autorización:', e);
+    return null;
+  }
+};
+
 // Helper function for API requests
 async function fetchAPI(endpoint: string, options = {}) {
   try {
+    // Obtener el token de autorización
+    const token = getAuthToken();
+    
+    // Preparar los headers
+    const headers = {
+      'Content-Type': 'application/json',
+      ...((options as any).headers || {})
+    };
+    
+    // Añadir el token de autorización si existe
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${ABSOLUTE_API_BASE_URL}${endpoint}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
       ...options,
+      headers,
     });
   
     if (!response.ok) {

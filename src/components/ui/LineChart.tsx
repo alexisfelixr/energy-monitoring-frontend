@@ -5,7 +5,7 @@ interface DataPoint {
   date: string;
   voltage: number;
   current: number;
-  originalDate?: string; // Para mostrar la fecha original en datos históricos
+  originalDate?: string;
 }
 
 interface LineChartProps {

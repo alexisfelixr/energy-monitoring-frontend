@@ -175,7 +175,7 @@ export default function MonitoringPage() {
           <label htmlFor="centerSelect" className="mr-2 text-black font-medium" >Center:</label>
           <select
             id="centerSelect"
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-black"
             value={selectedCenterId || ''}
             onChange={handleCenterChange}
             disabled={loading || centers.length === 0}
@@ -269,8 +269,8 @@ export default function MonitoringPage() {
           ) : energyByDeviceData.length === 0 ? (
             <div className="h-64 flex items-center justify-center text-gray-500">No device data available</div>
           ) : (
-            <div className="h-64">
-              <BarChart data={energyByDeviceData} width={500} height={250} color="#10B981" />
+            <div className="h-75">
+              <BarChart data={energyByDeviceData} width={500} height={300} color="#10B981" />
             </div>
           )}
         </div>

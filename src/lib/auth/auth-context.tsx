@@ -3,19 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthAPI } from './auth-service';
-import { User, AuthState, LoginRequest, RegisterRequest } from './types';
-
-// Definir interface para el contexto
-interface AuthContextProps {
-  user: User | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  error: string | null;
-  login: (data: LoginRequest) => Promise<void>;
-  register: (data: RegisterRequest) => Promise<void>;
-  logout: () => Promise<void>;
-  clearError: () => void;
-}
+import { User, AuthState, LoginRequest, RegisterRequest, AuthContextProps } from './types';
 
 // Crear contexto con valores por defecto
 const AuthContext = createContext<AuthContextProps>({

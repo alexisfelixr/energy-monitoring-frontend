@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 
 interface DataPoint {
-  fecha: string;     // Fecha en formato YYYY-MM-DD
-  voltaje: number;   // Valor de voltaje
-  consumo: number;   // Valor de consumo
+  fecha: string; 
+  voltaje: number;
+  consumo: number;
 }
 
 interface HistoricalChartProps {

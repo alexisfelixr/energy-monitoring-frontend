@@ -36,3 +36,18 @@ export interface AuthState {
   isLoading: boolean;
   error: string | null;
 }
+
+export interface AuthContextProps {
+  user: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  error: string | null;
+  login: (data: LoginRequest) => Promise<void>;
+  register: (data: RegisterRequest) => Promise<void>;
+  logout: () => Promise<void>;
+  clearError: () => void;
+}
+
+export interface ProtectedRouteProps {
+  children: React.ReactNode;
+}
