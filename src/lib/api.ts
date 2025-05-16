@@ -29,15 +29,15 @@ const getAuthToken = () => {
 };
 
 // Helper function for API requests
-async function fetchAPI(endpoint: string, options = {}) {
+async function fetchAPI(endpoint: string, options: RequestInit = {}) {
   try {
     // Obtener el token de autorización
     const token = getAuthToken();
     
     // Preparar los headers
-    const headers = {
+    const headers: HeadersInit = {
       'Content-Type': 'application/json',
-      ...((options as any).headers || {})
+      ...(options.headers as Record<string, string> || {})
     };
     
     // Añadir el token de autorización si existe
