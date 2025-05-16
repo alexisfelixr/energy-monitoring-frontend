@@ -130,19 +130,31 @@ export default function MonitoringPage() {
     }
   }, [selectedCenterId]);
   
-  // Helper function to format the last update time
+  // Helper function to format the last update time with CDMX timezone
   const formatLastUpdate = (date: Date) => {
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
+    // Crear una fecha actual con la zona horaria de CDMX
+    const options = { timeZone: 'America/Mexico_City' };
+    const cdmxNow = new Date(new Date().toLocaleString('en-US', options));
+    
+    // Convertir la fecha proporcionada a la zona horaria de CDMX
+    const cdmxDate = new Date(date.toLocaleString('en-US', options));
+    
+    const diffMs = cdmxNow.getTime() - cdmxDate.getTime();
     const diffMins = Math.floor(diffMs / 60000);
     
     if (diffMins < 1) return 'Just now';
     if (diffMins === 1) return '1 min ago';
     if (diffMins < 60) return `${diffMins} mins ago`;
     
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    // Formatear la hora con la zona horaria de CDMX
+    return date.toLocaleString('es-MX', { 
+      timeZone: 'America/Mexico_City',
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true
+    });
   };
-  
+
   // Sample distribution by type - replace with actual data from backend if available
   const updateConsumptionByType = (totalConsumption: number) => {
     // This is just a placeholder - ideally this data would come from your backend
