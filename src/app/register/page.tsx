@@ -66,7 +66,8 @@ export default function RegisterPage() {
     }
 
     // Omitir confirmPassword al enviar
-    const { ...registerData } = formData;
+    let { confirmPassword, ...registerData } = formData;
+    confirmPassword = '';
     await register(registerData);
   };
 
@@ -155,7 +156,7 @@ export default function RegisterPage() {
               required
               className={`w-full px-3 py-2 border ${
                 formErrors.password ? 'border-red-500' : 'border-gray-300'
-              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
               value={formData.password}
               onChange={handleChange}
               placeholder="••••••••"
@@ -176,8 +177,8 @@ export default function RegisterPage() {
               required
               className={`w-full px-3 py-2 border ${
                 formErrors.confirmPassword ? 'border-red-500' : 'border-gray-300'
-              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
-              value={formData.confirmPassword}
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
+                value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="••••••••"
             />
